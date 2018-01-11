@@ -64,6 +64,8 @@ func (b *Builder) buildBin() error {
 	}
 
 	buildArgs = append(buildArgs, "-ldflags", strings.Join(flags, " "))
-
+	
+	envy.Set("GO_ENV", b.Environment)
+	
 	return b.exec(envy.Get("GO_BIN", "go"), buildArgs...)
 }
